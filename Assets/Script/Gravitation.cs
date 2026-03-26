@@ -7,6 +7,9 @@ public class Gravitation : MonoBehaviour
     private Rigidbody rb;
     const float G = 0.00667f;
 
+    [SerializeField] bool planet = false;
+    [SerializeField] int orbitSpeed = 1000;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -16,6 +19,11 @@ public class Gravitation : MonoBehaviour
             otherObj = new List<Gravitation>();
         }
         otherObj.Add(this);
+
+        if (!planet)
+        {
+            rb.AddForce(Vector3.left * orbitSpeed);
+        }
     }
 
     // Update is called once per frame
